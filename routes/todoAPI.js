@@ -4,7 +4,7 @@ let express = require('express'),
 let router = express.Router();
 
 router.get("/", function(req, res){
-    db.todo.find()
+    db.Todo.find()
     .then(function(todos){
         res.json(todos);
     })
@@ -14,7 +14,13 @@ router.get("/", function(req, res){
 })
 
 router.post("/", function(req, res){
-    res.send("POST ROUTE");
+    db.Todo.create(req.body)
+    .then(function(todo){
+        res.status(201).json(todo);
+    })
+    .catch(function(error){
+        console.log(error);
+    })
 })
 
 module.exports = router;

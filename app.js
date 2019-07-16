@@ -6,7 +6,7 @@ let todoAPIRoutes = require('./routes/todoAPI');
 let app = express(),
     port = process.env.PORT || 3000;
 
-app.use("/api", todoAPIRoutes);
+app.use("/api/todos", todoAPIRoutes);
 
 app.get("/", function(req, res){
     res.json("Hello from Root");

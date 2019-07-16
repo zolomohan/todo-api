@@ -9,7 +9,7 @@ router.get("/", function(req, res){
         res.json(todos);
     })
     .catch(function(error){
-        console.log("Error" + error);
+        res.send(error);
     })
 })
 
@@ -19,8 +19,38 @@ router.post("/", function(req, res){
         res.status(201).json(todo);
     })
     .catch(function(error){
-        console.log(error);
+        res.send(error);
     })
 })
+
+router.get("/:todoid", function(req, res){
+    db.Todo.findById(req.params.todoid)
+    .then(function(todo){
+        res.json(todo);
+    })
+    .catch(function(error){
+        res.send(error);
+    })
+})
+
+router.put("/:todoid", function(req, res){
+    //.findOneAndUpdate returns the old data, 
+    //{new: true} will set the function to return the updated data
+    db.Todo.findOneAndUpdate({_id: req.params.todoid}, req.body, {new: true})
+    .then(function(todo){
+        res.json(todo);
+    })
+    .catch(function(error){
+        res.send(error);
+    })
+})
+
+router.put(":/todoid", function(req, res){
+    db.Todo.findByIdAndRemove(req.params.todoid)
+    .then(function(){
+        res.s
+    })
+})
+
 
 module.exports = router;

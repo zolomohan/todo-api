@@ -45,10 +45,13 @@ router.put("/:todoid", function(req, res){
     })
 })
 
-router.put(":/todoid", function(req, res){
+router.delete(":/todoid", function(req, res){
     db.Todo.findByIdAndRemove(req.params.todoid)
     .then(function(){
-        res.s
+        res.json({message: "Todo Deleted"})
+    })
+    .catch(function(error){
+        res.send(error);
     })
 })
 

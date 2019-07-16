@@ -7,7 +7,7 @@ router.route("/")
     .get(helper.getAllTodos)
     .post(helper.createTodo);
 
-router.post("/:todoid")
+router.route("/:todoid")
     .get(helper.getTodo)
     .put(helper.updateTodo)
     .delete(helper.deleteTodo)

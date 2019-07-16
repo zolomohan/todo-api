@@ -42,7 +42,6 @@ exports.updateTodo = function(req, res){
     })
 }
 
-
 exports.deleteTodo = function(req, res){
     db.Todo.findByIdAndRemove(req.params.todoid)
     .then(function(){

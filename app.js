@@ -2,20 +2,19 @@
 let express = require('express'),
     bodyParser = require('body-parser');
 
-//Models
-let todoAPIRoutes = require('./routes/todoAPI');
-    
-let app = express(),
-port = process.env.PORT || 3000;
-    
-app.use("/api/todos", todoAPIRoutes);
+let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+//Models
+let todoAPIRoutes = require('./routes/todoAPI');
+app.use("/api/todos", todoAPIRoutes);
+
 app.get("/", function(req, res){
-    res.json("Hello from Root");
+    res.json("Root Route");
 })
 
+let port = process.env.PORT || 3000;
 app.listen(port, function(){
     console.log("Todo API Started on Port "+port);
 })
